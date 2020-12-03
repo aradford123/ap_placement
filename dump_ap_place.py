@@ -66,8 +66,8 @@ class DNAC:
 dnac = DNAC(DNAC_IP, DNAC_USER, DNAC_PASS)
 
 def process_items(items):
-    for item in items:
-        for key, val in item.items():
+    for ap in items:
+        for key, val in ap.items():
             # print (key, json.dumps(val, indent=2))
             if key == "attributes":
                 hierarchyname = val['heirarchyName']
