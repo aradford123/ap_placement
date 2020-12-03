@@ -66,26 +66,27 @@ class DNAC:
 dnac = DNAC(DNAC_IP, DNAC_USER, DNAC_PASS)
 
 def process_items(items):
-    for key,val in items[0].items():
-        #print (key, json.dumps(val, indent=2))
-        if key == "attributes":
-            hierarchyname = val['heirarchyName']
-            APname = val['name']
-        if key == "position":
-            x = val['x']
-            y = val['y']
-            z = val['z']
-        if key == "radios":
-            for radio in val:
-                for k2, v2 in radio.items():
-                    if k2 =="attributes":
-                        slot = v2['slotId']
-                    if k2 == 'antenna':
-                        if slot == 0:
-                            antennaAzimuth0 = v2['azimuthAngle']
-                            antennaElevation0 = v2['elevationAngle']
-                        elif slot == 1:
-                            antennaAzimuth1 = v2['azimuthAngle']
+    for item in items:
+        for key, val in item.items():
+            # print (key, json.dumps(val, indent=2))
+            if key == "attributes":
+                hierarchyname = val['heirarchyName']
+                APname = val['name']
+            if key == "position":
+                x = val['x']
+                y = val['y']
+                z = val['z']
+            if key == "radios":
+                for radio in val:
+                    for k2, v2 in radio.items():
+                        if k2 == "attributes":
+                            slot = v2['slotId']
+                        if k2 == 'antenna':
+                            if slot == 0:
+                                antennaAzimuth0 = v2['azimuthAngle']
+                                antennaElevation0 = v2['elevationAngle']
+                            elif slot == 1:
+                                antennaAzimuth1 = v2['azimuthAngle']
                             antennaElevation1 = v2['elevationAngle']
     print(f"{hierarchyname},{APname},{antennaAzimuth0}d,{antennaAzimuth1}d,{x},{y},{z},{antennaElevation0}d,{antennaElevation1}d")
 
