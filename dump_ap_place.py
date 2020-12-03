@@ -88,7 +88,7 @@ def process_items(items):
                             elif slot == 1:
                                 antennaAzimuth1 = v2['azimuthAngle']
                             antennaElevation1 = v2['elevationAngle']
-    print(f"{hierarchyname},{APname},{antennaAzimuth0}d,{antennaAzimuth1}d,{x},{y},{z},{antennaElevation0}d,{antennaElevation1}d")
+        print(f"{hierarchyname},{APname},{antennaAzimuth0}d,{antennaAzimuth1}d,{x},{y},{z},{antennaElevation0}d,{antennaElevation1}d")
 
 sites = dnac.get('api/v1/group/?groupType=SITE')
 print("AP_Positions")
