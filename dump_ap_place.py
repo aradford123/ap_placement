@@ -67,6 +67,7 @@ dnac = DNAC(DNAC_IP, DNAC_USER, DNAC_PASS)
 
 def process_items(items):
     for ap in items:
+        hierarchyname = APname = x = y = z = slot = antennaAzimuth0 = antennaAzimuth1 = antennaElevation0  = antennaElevation1 = None
         for key, val in ap.items():
             # print (key, json.dumps(val, indent=2))
             if key == "attributes":
@@ -87,7 +88,10 @@ def process_items(items):
                                 antennaElevation0 = v2['elevationAngle']
                             elif slot == 1:
                                 antennaAzimuth1 = v2['azimuthAngle']
-                            antennaElevation1 = v2['elevationAngle']
+                                antennaElevation1 = v2['elevationAngle']
+        s= (hierarchyname,APname,x,y,z,slot,antennaAzimuth0,antennaAzimuth1,antennaElevation0 ,antennaElevation1)
+        if None in s:
+            print("Warning, some elements None")
         print(f"{hierarchyname},{APname},{antennaAzimuth0}d,{antennaAzimuth1}d,{x},{y},{z},{antennaElevation0}d,{antennaElevation1}d")
 
 sites = dnac.get('api/v1/group/?groupType=SITE')
