@@ -102,7 +102,8 @@ for site in sites['response']:
         if info['nameSpace'] == 'mapGeometry':
             #print(json.dumps(info, indent=2))
             siteid = site['id']
-            response = dnac.get('api/v1/dna-maps-service/domains/{}/aps?pageSize=9999&detailedView=true'.format(siteid))
+            # adam fix the metrics=false to stop side effect of background metric polling
+            response = dnac.get('api/v1/dna-maps-service/domains/{}/aps?pageSize=9999&detailedView=true&metrics=false'.format(siteid))
             #print(json.dumps(response,indent=2))
             if response['items'] != []:
                 process_items(response['items'])
